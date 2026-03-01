@@ -1,0 +1,77 @@
+\documentclass{article}
+
+\usepackage[final]{neurips_2024}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\title{External GPU on Fire: Physically-Based Rendering Proposal}
+
+\author{%
+  Yusuf Morsi \\
+  Department of Electrical and Computer Engineering\\
+  UC San Diego\\
+  \texttt{ymorsi@ucsd.edu} \\
+}
+
+
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+I am proposing a path-traced scene showing an external GPU (eGPU) enclosure 
+engulfed in flames, representing the increased usage of them for AI in the 
+current day and age. In addition to artistic sophistication, I will use 
+emissive lighting (RGB radiance), RoughPlastic BSDF for a brushed-aluminum 
+look, and Monte Carlo path tracing. This will be created with the lajolla 
+repository, and I intend for this submission to be under the "beautiful 
+images" category. The scene will be specified entirely in XML, and I will 
+include code for tone mapping and PNG output.
+\end{abstract}
+
+
+\section{Introduction and approach}
+
+The CSE 272 project document explains how we can implement an image with technical/artistic sophistication. That being said, I have chosen an artistically sophisticated image: an eGPU on fire (representing the increased use of AI, and in turn, compute).
+
+\textbf{Scene Design} \\ eGPUs are box-shaped metallic chasses (I am planning to use RoughPlastic BSDF with high specular, low roughness, and brushed aluminum). Fire will be simulated with emissive spheres, using RGB radiance (likely hot yellow core with orange/red edges), so that they look like a flame cluster. I will also implement Cornell box room lighting with ceiling fill. If there is additional time I could also implement emissive volume support after the vol-path tracer.
+
+\textbf{Technical Components} \\ To reiterate, for fire I will use emissive area-light spheres with RGB radiance (amber). For creating the eGPU, I'll use RoughPlastic BSDF (brushed aluminum), and for rendering I will be implementing path integrator with 2048 spp. The geometry will consist of a Cornell box room, OBJ meshes (showing a desk, eGPU box, and possibly a laptop). I also will include basic PNG exporting code (which I have used for other assignments), and likely Reinhard tone mapping with gamma correction.
+
+
+\section{Deliverables and Timeline}
+
+\hspace{.5cm}\textbf{Deliverables:}  \\
+\\
+(1) Scene file \texttt{scenes/egpu\_fire/egpu\_fire.xml}; 
+\\
+(2) Rendered images with different spp values; 
+\\
+(3) (If time permits) support for emissive volume.\\
+
+\textbf{Timeline:} \\
+
+On 2/27, I am submitting this proposal.
+By 3/6, I will render the initial image. By 3/9, I will have the composition refined, and will prepare a progress report. By 3/19, I will have completed the final polish renders, a final report, and am aiming to also have emissive volume support as well.
+
+
+% \section{Reproducibility and Preliminary result}
+
+% Render with: \verb|./lajolla ../scenes/egpu_fire/egpu_fire.xml -o egpu_fire.png|. View with tev, hdrview, or any image viewer. Increase \texttt{sampleCount} (e.g., 512--1024) for publication quality.
+
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=0.85\linewidth]{egpu_fire}
+%   \caption{Preliminary render: eGPU-on-fire scene (2048 spp, 768$\times$512).}
+% \end{figure}
+
+
+\end{document}
